@@ -254,6 +254,7 @@ if ENV["CANVAS_COURSE_ID"] && ENV["CANVAS_TOKEN"] && ENV["CANVAS_BASE_URL"]
       if (points == nil)
         print "Canvas importer: no points for assignment " + page["title"] + ": setting points to 0\n"
         points = 0
+      end
       canvasSyncer.syncAssignment(page["title"], page["due_date"], points, page["content"], baseURL, page["last_modified_at"].to_s, permalink)
     elsif (page["layout"] == "module")
       if (page["lessons"] == nil)

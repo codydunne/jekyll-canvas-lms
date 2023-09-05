@@ -14,6 +14,12 @@ gem build jekyll-canvas-lms.gemspec
 
 ```
 
+For your web page, run
+
+```bash
+Bundle update jekyll-canvas-lms
+```
+
 For API reference, see [`lms_api` docs](https://github.com/atomicjolt/lms_api) and [`canvas` docs](https://canvas.instructure.com/doc/api/).
 
 ## Configuring

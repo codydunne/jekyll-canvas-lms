@@ -164,7 +164,7 @@ class CanvasSyncer
   def syncAssignment(title, dueDate, contents, baseURL, lastModifiedAt, permalink)
     assignmentIdx = getAllAssignments().index { |assignment| assignment["name"] == title }
     dueDate = DateTime.parse(dueDate)
-    contents = '<div class="fs-1 text-right fw-300">This content was last updated at:' + lastModifiedAt + '; you may view it with native formatting <a target="_blank" href="' + permalink + '">on the course website</a></div>' + contents
+    contents = '<div class="fs-1 text-right fw-300">This content was last updated at: ' + lastModifiedAt + '; you may view it with native formatting <a target="_blank" href="' + permalink + '">on the course website</a></div>' + contents
 
     contents = contents.gsub(/<a href="\//, '<a target="_blank" href="' + baseURL + "/")
     assignment = {
@@ -214,7 +214,7 @@ class CanvasSyncer
     begin
       home = getHomePage()
       if (home)
-        content = '<div class="fs-1 text-right fw-300">This content was last updated at:' + lastModifiedAt + '; you may view it with native formatting <a target="_blank" href="' + permalink + '">on the course website</a></div>' + content
+        content = '<div class="fs-1 text-right fw-300">This content was last updated at: ' + lastModifiedAt + '; you may view it with native formatting <a target="_blank" href="' + permalink + '">on the course website</a></div>' + content
         content = content.gsub(/<a href="\//, '<a target="_blank" href="' + baseURL + "/")
 
         existing_home = home.body
@@ -229,7 +229,7 @@ class CanvasSyncer
       end
     rescue => error
       print error
-      print "Not syncing home page - no existing home page found. To push the home page into Canvas, create a 'Front Page' in Canvas, and then set that pgae to be the course home page.\n"
+      print "Not syncing home page - no existing home page found. To push the home page into Canvas, create a 'Front Page' in Canvas, and then set that page to be the course home page.\n"
     end
   end
 end

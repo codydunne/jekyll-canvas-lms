@@ -188,11 +188,12 @@ class CanvasSyncer
       canvasAssignment = @assignments[assignmentIdx]
       dueDate = dueDate.to_time
       canvasDueDate = Time.parse(canvasAssignment["due_at"])
+      canvasPoints = canvasAssignment["points_possible"]
       cleanContent = canvasAssignment["description"]
 
       cleanContent = cleanContent.gsub(/<link rel="stylesheet" href="https:\/\/instructure-uploads.s3.amazonaws.com\/([^"]+)">/, "")
       cleanContent = cleanContent.gsub(/<script src="https:\/\/instructure-uploads.s3.amazonaws.com\/([^"]+)"><\/script>/, "")
-      if (cleanContent != contents || canvasDueDate != dueDate)
+      if (cleanContent != contents || canvasDueDate != dueDate || canvasPoints != points)
         params = {
           id: canvasAssignment["id"],
           course_id: @course_id,

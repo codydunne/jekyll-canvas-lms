@@ -5,6 +5,15 @@ This plugin for Jekyll will automatically push the following content from Jekyll
 * Assignments (pages with the layout `assignment` that have a `due_date` front matter property)
 * Modules (pages with the layout `module` that have `lessons` front matter)
 
+## Building
+
+Run
+
+```bash
+gem build jekyll-canvas-lms.gemspec
+
+```
+
 
 ## Configuring
 This plugin requires the following three environmental variables to be defined. We store these settings in environmnetal variables to make it easy to store them as secrets in your CI environment. You should not put them in a config file in your website repository.

@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = "jekyll-canvas-lms"
-  s.version = "0.0.1"
+  s.version = "0.0.2"
   s.summary = "A Jekyll Plugin to automatically push posts to Canvas LMS"
   s.authors = ["Jonathan Bell"]
   s.email = "jon@jonbell.net"

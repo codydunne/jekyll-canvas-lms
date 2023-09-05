@@ -161,7 +161,7 @@ class CanvasSyncer
     end
   end
 
-  def syncAssignment(title, dueDate, contents, baseURL, lastModifiedAt, permalink)
+  def syncAssignment(title, dueDate, points, contents, baseURL, lastModifiedAt, permalink)
     assignmentIdx = getAllAssignments().index { |assignment| assignment["name"] == title }
     dueDate = DateTime.parse(dueDate)
     contents = '<div class="fs-1 text-right fw-300">This content was last updated at: ' + lastModifiedAt + '; you may view it with native formatting <a target="_blank" href="' + permalink + '">on the course website</a></div>' + contents
@@ -171,6 +171,7 @@ class CanvasSyncer
       name: title,
       description: contents,
       due_at: dueDate,
+      points_possible: points,
       course_id: @course_id,
       published: true,
     }
@@ -249,7 +250,11 @@ if ENV["CANVAS_COURSE_ID"] && ENV["CANVAS_TOKEN"] && ENV["CANVAS_BASE_URL"]
         print "Canvas importer: no due date for assignment " + page["title"] + ": skipping\n"
         next
       end
-      canvasSyncer.syncAssignment(page["title"], page["due_date"], page["content"], baseURL, page["last_modified_at"].to_s, permalink)
+      points = page["points"]
+      if (points == nil)
+        print "Canvas importer: no points for assignment " + page["title"] + ": setting points to 0\n"
+        points = 0
+      canvasSyncer.syncAssignment(page["title"], page["due_date"], points, page["content"], baseURL, page["last_modified_at"].to_s, permalink)
     elsif (page["layout"] == "module")
       if (page["lessons"] == nil)
         print "Canvas importer: no lessons for module " + page["title"] + ": skipping\n"
